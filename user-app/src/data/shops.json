@@ -1,0 +1,77 @@
+{
+    "shops": [
+        {
+            "id": "1",
+            "name": "Varthur Fresh Chicken",
+            "rating": 4.8,
+            "reviewCount": 120,
+            "categories": [
+                "Chicken",
+                "Eggs",
+                "Marinades"
+            ],
+            "distance": "0.8 km",
+            "address": "Main Road",
+            "timing": "8 AM - 8 PM",
+            "isOpen": true,
+            "freeDelivery": true,
+            "deliveryTime": "45 mins",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCEcGQuddG-n2NWOY75fJ3H13ZJN6BhGMVeWkelARKUTZoVUmpS7uRnte8gm1RjT-UhnuOIdVhozgUm3VMqovv97rS6LQbTYccPBclUh0yA8rgDW_BUlauJdI0r3XX6AD0toM5X-TYJNYLXEdQRwsp_kf816sDj8MxHqIKaSXkcsIMrffvWa8-iPPiBP4ILQWZ2k1fSl2Tu3M8Lk1tpCMN5PzFgoHBHe-6uSfH8qflGHIh3gpSAdrktUvB2RHLjmfCOq5mistsph5pu"
+        },
+        {
+            "id": "2",
+            "name": "Royal Mutton Stall",
+            "rating": 4.5,
+            "reviewCount": 85,
+            "categories": [
+                "Premium Mutton",
+                "Chops",
+                "Keema"
+            ],
+            "distance": "1.2 km",
+            "address": "Market Square",
+            "timing": "8 AM - 8 PM",
+            "isOpen": true,
+            "freeDelivery": false,
+            "deliveryFee": 20,
+            "deliveryTime": "50 mins",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCh3gYUB5zUOuBQjblkZX4Q2jSPgZsCx-hHDk5UI3O_tZkzorGajAkb8eiS3sDuZFxlQIYy94L_vuDZndHo7DNfGxSP_gpFLYE9n5djoPnZQddq_QOSx7MSpWYo-0H3EBUk0XsPQQ2PNTPKVsZ6nt4C_ErAgQXaAYJDENk5PkNvsPkFV7HJNkBdx7kytvrw_kpPsOW18x95-qClPh-7BHzTWzCZT9WhJyUdou_-L_RN0IL_9i_QRfeEcQXO7gRhJj5l0P8aUpw7EPxg"
+        },
+        {
+            "id": "3",
+            "name": "Coastal Catch Fish Mart",
+            "rating": 4.2,
+            "reviewCount": 65,
+            "categories": [
+                "Sea Fish",
+                "Prawns",
+                "Crabs"
+            ],
+            "distance": "2.5 km",
+            "address": "Near Lake",
+            "timing": "8 AM - 8 PM",
+            "isOpen": false,
+            "closingSoon": true,
+            "freeDelivery": true,
+            "deliveryTime": "60 mins",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBOBxNMQnFRiYFQg-Az7XXaneekGlf568c5WbfeaE5QIiwuaw-tmrX28EjfCVTqESneV7BLmkGAO844nNFA69YRyZLii7es5pVnVNuO5_BZNCwbw0j8Oi2RmYYpT6Oaxus94fLnx2YKUaW7ukQi35zzldKa1HEWGihY8HeStV9YhNa_OPSxhuwI1-YvToU5EbU_43cm-XxNT6LmTVCjbvnC89eBXyXTFv-GBMLkbAf7NtJRTFtRd_AQMywfKRyMDgDWxKlIpWuLLVLq"
+        },
+        {
+            "id": "4",
+            "name": "Organic Meats & Co.",
+            "rating": 4.9,
+            "reviewCount": 210,
+            "categories": [
+                "Free Range Chicken",
+                "Organic Mutton"
+            ],
+            "distance": "1.5 km",
+            "address": "Green Street",
+            "timing": "8 AM - 8 PM",
+            "isOpen": true,
+            "freeDelivery": true,
+            "deliveryTime": "45 mins",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBW330L-xF2w7b1HLutcUB8TN4TuYO-FOwLlC6jjgv2HR4ggm0t7PTrAUOlcGAaX2EMGSYFS6-EWQ_nLfLrxq-4YY_gJmQ4pwPK9RJBWfwke0SyCVj2Z3_3JgjISwkRRG84CFnW2ekxzYQwl8wUfCR8J1jpz8n8OAAb_BEz4dNoDyAZFfxzcNgMbCqXT-jgUN62FPCvGST4QxTIar6y8aNr6l7bix3mG_wdOl-AJIRLqU98SI1cGmKzRRWkUkrwBQ5WED7gXkQDDlbK"
+        }
+    ]
+}

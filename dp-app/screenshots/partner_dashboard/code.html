@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delivery Partner Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f45925",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221410",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f1f1a",
+                        "text-main-light": "#1c110d",
+                        "text-main-dark": "#fcf9f8",
+                        "text-secondary-light": "#9c5e49",
+                        "text-secondary-dark": "#d4a899",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-white dark:border-background-dark shadow-sm" data-alt="Portrait of delivery partner Rahul smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDi838Hlo7dOnTI4YImtDaRItWEcQ_C2wqUV7MRZzaBI0jl0RZ5aUraDfwNHQEIca0inuBr1e7XqD82cYZ2lfzyaRKrv0eNKRl9HHGspl3r56EbLKTBUPBDMizYKMY4XgZpQnrJdgpiu7ekRijWFbcETARjWVLslaNDZEdgXuwCSTKnART2njOrD5_1Bamw1s2XzFTCh4tJeOm-bYId4yPeeeV6W_CKWV7-8woNLGpTVjiJ6P9Wn6wpd64ZxM5da6Gke-_iwBEcZb33");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-white dark:border-background-dark"></div>
+</div>
+<div>
+<p class="text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider">Good Morning</p>
+<h2 class="text-lg font-bold leading-tight">Rahul!</h2>
+</div>
+</div>
+<button class="flex items-center gap-2 bg-green-100 dark:bg-green-900/30 px-3 py-1.5 rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400 text-xl filled">toggle_on</span>
+<span class="text-sm font-bold text-green-700 dark:text-green-400">Online</span>
+</button>
+</header>
+<!-- Stats Widget -->
+<section class="px-4 py-6">
+<div class="flex flex-wrap gap-4">
+<!-- Earnings Card -->
+<div class="flex flex-1 flex-col justify-between gap-4 rounded-xl p-5 bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/5 dark:border-white/5">
+<div class="flex items-start justify-between">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="text-xs font-bold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 px-2 py-1 rounded-lg">+12%</span>
+</div>
+<div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium mb-1">Today's Earnings</p>
+<p class="text-2xl font-extrabold tracking-tight">₹850</p>
+</div>
+</div>
+<!-- Trips Card -->
+<div class="flex flex-1 flex-col justify-between gap-4 rounded-xl p-5 bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-black/5 dark:border-white/5">
+<div class="flex items-start justify-between">
+<div class="size-10 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">two_wheeler</span>
+</div>
+</div>
+<div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium mb-1">Trips Completed</p>
+<p class="text-2xl font-extrabold tracking-tight">5</p>
+</div>
+</div>
+</div>
+</section>
+<!-- New Requests Headline -->
+<div class="flex items-center justify-between px-4 pb-2 pt-2">
+<h2 class="text-xl font-bold tracking-tight">New Requests <span class="text-primary">(2)</span></h2>
+<button class="text-sm font-medium text-primary hover:text-primary/80">View Map</button>
+</div>
+<!-- Request Cards Feed -->
+<section class="flex flex-col gap-4 px-4 pb-6">
+<!-- Card 1 -->
+<article class="flex flex-col rounded-2xl bg-white dark:bg-surface-dark shadow-sm border border-black/5 dark:border-white/5 overflow-hidden">
+<!-- Map Preview / Context Header -->
+<div class="relative h-32 w-full bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Map view of Varthur road with route line" data-location="Varthur, Bangalore" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0yk0awrSbH_pPzMrS9Wp25y8kVmqASg9Irls1uy7SphTTiC0mk59_PSCnng1CyGfmtoTRkJSjTVws45gcoOHyD_8AldAW5mvJuhdPzp0kNTXKlLl8mLzEIA5N_exGJXRgkWrxKg8odQsQjVHx6ckDiVcg8JS4Q3YLwrmfJKEwUWhO4-aZvJM_aBRSbU-M-iVpL8aZqBgF607mJoA04E1PaF3UihDU7g-vNR1IMu2dVzpci03yfRMAzciAiWG3PTAFUo4txgGENfHK");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-3 right-3 bg-white dark:bg-black/60 backdrop-blur text-xs font-bold px-2 py-1 rounded-lg shadow-sm border border-black/5">
+                    2.5 km • 15 min
+                </div>
+<div class="absolute bottom-3 left-3 text-white">
+<p class="text-xs font-medium opacity-90">Estimated Earnings</p>
+<p class="text-xl font-bold">₹65</p>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<!-- Shop Info -->
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-xl bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-2xl">restaurant</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-lg font-bold truncate">Nandu's Chicken</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Varthur Main Rd, near Police Station</p>
+</div>
+</div>
+<!-- Route Timeline -->
+<div class="relative pl-4 border-l-2 border-dashed border-gray-200 dark:border-gray-700 ml-2 py-1 space-y-4">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 bg-primary rounded-full ring-4 ring-white dark:ring-surface-dark"></div>
+<p class="text-xs font-bold uppercase text-text-secondary-light dark:text-text-secondary-dark tracking-wide">Pickup</p>
+<p class="text-sm font-medium">Nandu's Chicken</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 size-3 bg-green-500 rounded-full ring-4 ring-white dark:ring-surface-dark"></div>
+<p class="text-xs font-bold uppercase text-text-secondary-light dark:text-text-secondary-dark tracking-wide">Drop off</p>
+<p class="text-sm font-medium">Sobha Dream Acres, Wing 4</p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex gap-3 pt-2">
+<button class="flex-1 h-12 rounded-xl bg-gray-100 dark:bg-white/5 text-text-main-light dark:text-text-main-dark font-bold text-sm hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                        Decline
+                    </button>
+<button class="flex-[2] h-12 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/25 hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span>Accept Order</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col rounded-2xl bg-white dark:bg-surface-dark shadow-sm border border-black/5 dark:border-white/5 overflow-hidden opacity-90 scale-[0.98]">
+<!-- Map Preview / Context Header -->
+<div class="relative h-28 w-full bg-gray-100 dark:bg-gray-800">
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Map view showing route to Gunjur" data-location="Gunjur, Bangalore" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdMBSN-z3vQLRCg9s5ziIsukVactb3Myi1L4tjORoqs4n1A6UXixhkvCvtcQuoMh2yw1pGHfb8j3xWFxMyiOP_JsZAEPuWJ7Iivf8LuewzITiEkINz1kPWBYs3C94XiZjNqE8PmsoXh63FFK74HbrGljWZVfO37Uo6p_nvnn_bQMbEz6DA2TxSIGqNVlFzDirKPmnkXEVJ0u6FMeAXuOyXL54FfsFFfTdVO2rm1NekNkxMNjcyvKzqYsNaLsBgjQ7O7ap2fv4t8UPA");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute top-3 right-3 bg-white dark:bg-black/60 backdrop-blur text-xs font-bold px-2 py-1 rounded-lg shadow-sm border border-black/5">
+                    1.8 km • 10 min
+                </div>
+<div class="absolute bottom-3 left-3 text-white">
+<p class="text-xs font-medium opacity-90">Estimated Earnings</p>
+<p class="text-xl font-bold">₹45</p>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-xl bg-red-100 dark:bg-red-900/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400 text-2xl">set_meal</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-lg font-bold truncate">Fresh Mutton Stall</h3>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Gunjur Village Rd</p>
+</div>
+</div>
+<!-- Simplified Action for secondary card -->
+<div class="flex gap-3 pt-1">
+<button class="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-text-main-light dark:text-text-main-dark font-bold text-xs">
+                        Decline
+                    </button>
+<button class="flex-[2] py-3 rounded-xl bg-primary text-white font-bold text-xs shadow-md shadow-primary/20">
+                        Accept Order
+                    </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Recent Activity Hint -->
+<div class="px-4 pb-8">
+<div class="flex items-center gap-2 mb-3 opacity-60">
+<h3 class="text-sm font-bold uppercase tracking-wider">Recent Activity</h3>
+<div class="h-px flex-1 bg-current"></div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 bg-transparent">
+<div class="flex items-center gap-3">
+<div class="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg">
+<span class="material-symbols-outlined text-green-700 dark:text-green-400">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold">Delivered to Swetha</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">10:30 AM • Varthur Kodi</p>
+</div>
+</div>
+<p class="font-bold text-green-600 dark:text-green-400">+₹55</p>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-white/5 px-6 py-3 flex justify-between items-center z-50 pb-safe">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined filled">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Wallet</span>
+</a>
+<div class="relative -top-6 bg-primary rounded-full p-4 shadow-xl shadow-primary/30 border-4 border-background-light dark:border-background-dark cursor-pointer group">
+<span class="material-symbols-outlined text-white group-active:scale-90 transition-transform">qr_code_scanner</span>
+</div>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-medium">History</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+<!-- Safe area spacing for bottom nav -->
+<div class="h-6"></div>
+<style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        /* Material Symbols Fill class */
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</body></html>

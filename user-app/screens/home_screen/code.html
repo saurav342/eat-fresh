@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fresh Meat Delivery</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e", 
+                        "primary-dark": "#16a34a",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#111812",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1f2923",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#1c110d] dark:text-[#fcf9f8] font-display antialiased pb-24">
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 pt-4 pb-2 shadow-sm transition-colors duration-200">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary uppercase tracking-wider mb-0.5">Delivering to</span>
+<div class="flex items-center gap-1 cursor-pointer group hover:opacity-80 transition-opacity">
+<span class="text-lg font-extrabold leading-tight text-gray-900 dark:text-white">Varthur, Bangalore</span>
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="relative p-2.5 rounded-xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-sm hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200" style="font-size: 22px;">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-primary rounded-full ring-2 ring-white dark:ring-surface-dark"></span>
+</button>
+<button class="relative p-2.5 rounded-xl bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-size: 22px;">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<div class="px-4 py-3 sticky top-[76px] z-40 bg-background-light dark:bg-background-dark">
+<label class="flex w-full items-center rounded-2xl bg-white dark:bg-surface-dark shadow-sm h-12 border border-transparent focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-300 group">
+<div class="pl-4 pr-3 text-gray-400 group-focus-within:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 24px;">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-base text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 px-0 h-full font-medium" placeholder="Search for shops, chicken, mutton..."/>
+</label>
+</div>
+<div class="flex gap-3 px-4 py-1 overflow-x-auto hide-scrollbar">
+<div class="flex shrink-0 items-center gap-2 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 px-3 py-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-primary fill-current" style="font-size: 18px; font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="text-xs font-bold text-gray-800 dark:text-gray-200">Near Me</span>
+</div>
+<div class="flex shrink-0 items-center gap-2 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 px-3 py-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-green-600" style="font-size: 18px;">star</span>
+<span class="text-xs font-bold text-gray-800 dark:text-gray-200">Top Rated</span>
+</div>
+<div class="flex shrink-0 items-center gap-2 rounded-full bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 px-3 py-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-orange-500" style="font-size: 18px;">schedule</span>
+<span class="text-xs font-bold text-gray-800 dark:text-gray-200">Open Now</span>
+</div>
+</div>
+<div class="mt-6 px-4">
+<div class="relative w-full aspect-[21/9] rounded-3xl overflow-hidden group shadow-lg shadow-gray-200/50 dark:shadow-none">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Fresh meat shop display" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCq1Yt-skzte7U_AUwseRQndVIVC34agHvpSG177KIYXvO9Jh8WM9DihMisF0LLNKjF6tecc6iD3OQLJMQCEff8FW8zVnB5AYxL2fLRuf5f9oBfvezuG3LzlVP7e7MeXQjIBNsZ0kDukXLRSqjc3_eZcv8x49pYk67RYDcC-ycblQ0yqHmNHfxSf1SlOmlvS70i6LFcH2KdByx519C8ucWc05MvK70wAkCEktZWnl6lCCgKv1-8zmoQWbo9_eFMkN6IrRZkuZ_ocghS');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-center px-6 text-white">
+<span class="bg-primary text-white text-[10px] font-extrabold px-2 py-1 rounded-md uppercase tracking-wide w-fit mb-2 shadow-sm">New in Varthur</span>
+<h3 class="text-2xl font-bold leading-tight mb-1 w-3/4">Support Local<br/>Butchers</h3>
+<p class="text-sm text-gray-200 font-medium w-3/4">Fresh from the market to your door.</p>
+</div>
+</div>
+</div>
+<div class="px-4 mt-8">
+<h2 class="text-xl font-bold mb-5 px-1 text-gray-900 dark:text-white">Shop by Meat Type</h2>
+<div class="grid grid-cols-4 gap-x-4 gap-y-6">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-[72px] h-[72px] rounded-full bg-green-50 dark:bg-green-900/10 flex items-center justify-center shadow-sm border border-green-100 dark:border-green-900/30 group-hover:border-primary group-hover:scale-105 transition-all duration-300 relative overflow-hidden">
+<div class="absolute inset-1 rounded-full bg-center bg-cover" data-alt="Raw chicken drumsticks" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz28GJWS3Qb-cL3U895G4ddsAN9yKwB_IYze_Kd-LGGR18xK5WCqpKPI4LMCraddkt3nSTItbtEW_1rK3oMxDLzZ9jPRfoAq8reYLtXWxKolm0dNIQ0wYWLpSFbUTQXhrFdzPFZNhHdrsEfaHkjEGT_Mm7MkGuaFzv6K2FWbNjDQS7NCeyWnhdQYPXnDOZY73_2FhXihbDp7usxd_fuBlqOd7Coc0oMva43Glf83b4_UfiQzO2gVQ11Stae8iGWRjp4N5G6qDUYOrQ')"></div>
+</div>
+<span class="text-xs font-bold text-center text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Chicken</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-[72px] h-[72px] rounded-full bg-green-50 dark:bg-green-900/10 flex items-center justify-center shadow-sm border border-green-100 dark:border-green-900/30 group-hover:border-primary group-hover:scale-105 transition-all duration-300 relative overflow-hidden">
+<div class="absolute inset-1 rounded-full bg-center bg-cover" data-alt="Raw mutton meat pieces" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPNmJowleVlFHBGiGN_rRqV4F7jmgfEvIHMHzEA0WsjviC08CBmf5Gix8iUTA5ypOXNtNbz4pjVwe6wYNLDbvjTwO32h3dfYWOTrPgHIN9BwSGQc33FzJu44V4Rq0T769dHQu494EXCyrjrBZagqw0mt__hUGpT1rYQAI5tFLYUl1n-hql16uLVcbeR2dq5la6gVLs2ns8B4AM-Ws6j2L2oPcC_8dbxX1KJziokGyzMep3sF510dGDErshSWwtVkLuaWtzDA7Oz7LM')"></div>
+</div>
+<span class="text-xs font-bold text-center text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Mutton</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-[72px] h-[72px] rounded-full bg-green-50 dark:bg-green-900/10 flex items-center justify-center shadow-sm border border-green-100 dark:border-green-900/30 group-hover:border-primary group-hover:scale-105 transition-all duration-300 relative overflow-hidden">
+<div class="absolute inset-1 rounded-full bg-center bg-cover" data-alt="Fresh fish on ice" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_rPOpwddiCzLKJE8Oqq_HoG_dKKu5DNCE6XyaWqEBG94_nT6cQjZV3SuL_9fU2v9qIPKYmWn7hscPDPY1Mzj9rym_MS0byDd1Q2kp5hE4lPjlK3h46ZrZzaDQXLQE1LEj1ko2NYX3TCzz00RqIf1EMTSzPhwsQD9XVKGD_-LRRY8X043HD1TSoDcXrxREO0vz3_HEKzm3P3m6MwTN9SZm9bWxzNE2K4QgVSvdNNTfiVukNvm0jt6avzov_9mxryLIpuEaGO902880')"></div>
+</div>
+<span class="text-xs font-bold text-center text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Fish</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-[72px] h-[72px] rounded-full bg-green-50 dark:bg-green-900/10 flex items-center justify-center shadow-sm border border-green-100 dark:border-green-900/30 group-hover:border-primary group-hover:scale-105 transition-all duration-300 relative overflow-hidden">
+<div class="absolute inset-1 rounded-full bg-center bg-cover" data-alt="Basket of fresh brown eggs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAnZkSwtQL9t8iTHdnckbmHRvd-uF0vWh0lMuymfd_tB_uz9rBxOrywBtkKuA8SFvt1gVssOOykMaD9KykHGWs4JxhmVamuo_YU0lafpTbgpBZjxOH6W9OaUgzng__zbLnsqlvbsbfp9BHK0qsodT18f-R3NpDCx5ucFEsP9lvF8TizXyvwWQcQ4oy-uwrzYEd7OU25HetF7U2LTSgX2k9IuJ_jtvP6XQNB2qODY3dioWb8FoETRJuLWyHNlnmISBwGbFkRkGyf7ww')"></div>
+</div>
+<span class="text-xs font-bold text-center text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Eggs</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pb-4">
+<div class="flex items-center justify-between px-4 mb-5">
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">Local Shops in Varthur</h2>
+<button class="text-primary text-sm font-bold flex items-center hover:opacity-80 transition-opacity">
+                    View Map <span class="material-symbols-outlined" style="font-size: 18px;">map</span>
+</button>
+</div>
+<div class="flex flex-col gap-4 px-4">
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-4 shadow-md border border-gray-100 dark:border-gray-800 flex gap-4 cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden">
+<div class="w-24 h-24 shrink-0 rounded-xl bg-gray-100 overflow-hidden relative">
+<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEcGQuddG-n2NWOY75fJ3H13ZJN6BhGMVeWkelARKUTZoVUmpS7uRnte8gm1RjT-UhnuOIdVhozgUm3VMqovv97rS6LQbTYccPBclUh0yA8rgDW_BUlauJdI0r3XX6AD0toM5X-TYJNYLXEdQRwsp_kf816sDj8MxHqIKaSXkcsIMrffvWa8-iPPiBP4ILQWZ2k1fSl2Tu3M8Lk1tpCMN5PzFgoHBHe-6uSfH8qflGHIh3gpSAdrktUvB2RHLjmfCOq5mistsph5pu');"></div>
+<div class="absolute bottom-0 left-0 right-0 bg-green-600 text-white text-[9px] font-bold text-center py-0.5">
+                    OPEN
+                </div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-0.5">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-gray-900 dark:text-white line-clamp-1">Varthur Fresh Chicken</h3>
+<div class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded-md">
+<span class="text-xs font-bold text-green-700 dark:text-green-400">4.8</span>
+<span class="material-symbols-outlined text-green-700 dark:text-green-400 fill-current" style="font-size: 10px; font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">Chicken • Eggs • Marinades</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">location_on</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">0.8 km • Main Road</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100 dark:border-gray-800 border-dashed">
+<span class="text-[10px] font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        Open: 8 AM - 8 PM
+                     </span>
+<span class="text-[10px] font-semibold text-primary">Free Delivery</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-4 shadow-md border border-gray-100 dark:border-gray-800 flex gap-4 cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden">
+<div class="w-24 h-24 shrink-0 rounded-xl bg-gray-100 overflow-hidden relative">
+<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCh3gYUB5zUOuBQjblkZX4Q2jSPgZsCx-hHDk5UI3O_tZkzorGajAkb8eiS3sDuZFxlQIYy94L_vuDZndHo7DNfGxSP_gpFLYE9n5djoPnZQddq_QOSx7MSpWYo-0H3EBUk0XsPQQ2PNTPKVsZ6nt4C_ErAgQXaAYJDENk5PkNvsPkFV7HJNkBdx7kytvrw_kpPsOW18x95-qClPh-7BHzTWzCZT9WhJyUdou_-L_RN0IL_9i_QRfeEcQXO7gRhJj5l0P8aUpw7EPxg');"></div>
+<div class="absolute bottom-0 left-0 right-0 bg-green-600 text-white text-[9px] font-bold text-center py-0.5">
+                    OPEN
+                </div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-0.5">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-gray-900 dark:text-white line-clamp-1">Royal Mutton Stall</h3>
+<div class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded-md">
+<span class="text-xs font-bold text-green-700 dark:text-green-400">4.5</span>
+<span class="material-symbols-outlined text-green-700 dark:text-green-400 fill-current" style="font-size: 10px; font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">Premium Mutton • Chops • Keema</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">location_on</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">1.2 km • Market Square</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100 dark:border-gray-800 border-dashed">
+<span class="text-[10px] font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        Open: 8 AM - 8 PM
+                     </span>
+<span class="text-[10px] font-semibold text-gray-400">Delivery: ₹20</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-4 shadow-md border border-gray-100 dark:border-gray-800 flex gap-4 cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden opacity-90">
+<div class="w-24 h-24 shrink-0 rounded-xl bg-gray-100 overflow-hidden relative grayscale">
+<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOBxNMQnFRiYFQg-Az7XXaneekGlf568c5WbfeaE5QIiwuaw-tmrX28EjfCVTqESneV7BLmkGAO844nNFA69YRyZLii7es5pVnVNuO5_BZNCwbw0j8Oi2RmYYpT6Oaxus94fLnx2YKUaW7ukQi35zzldKa1HEWGihY8HeStV9YhNa_OPSxhuwI1-YvToU5EbU_43cm-XxNT6LmTVCjbvnC89eBXyXTFv-GBMLkbAf7NtJRTFtRd_AQMywfKRyMDgDWxKlIpWuLLVLq');"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-[10px] font-bold text-white bg-black/50 px-2 py-1 rounded backdrop-blur-sm uppercase">Closing Soon</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-0.5">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-gray-900 dark:text-white line-clamp-1">Coastal Catch Fish Mart</h3>
+<div class="flex items-center gap-1 bg-yellow-100 dark:bg-yellow-900/30 px-1.5 py-0.5 rounded-md">
+<span class="text-xs font-bold text-yellow-700 dark:text-yellow-400">4.2</span>
+<span class="material-symbols-outlined text-yellow-700 dark:text-yellow-400 fill-current" style="font-size: 10px; font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">Sea Fish • Prawns • Crabs</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">location_on</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">2.5 km • Near Lake</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100 dark:border-gray-800 border-dashed">
+<span class="text-[10px] font-medium text-orange-500 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                        Closes at 8 PM
+                     </span>
+<span class="text-[10px] font-semibold text-primary">Free Delivery</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-4 shadow-md border border-gray-100 dark:border-gray-800 flex gap-4 cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden">
+<div class="w-24 h-24 shrink-0 rounded-xl bg-gray-100 overflow-hidden relative">
+<div class="w-full h-full bg-center bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBW330L-xF2w7b1HLutcUB8TN4TuYO-FOwLlC6jjgv2HR4ggm0t7PTrAUOlcGAaX2EMGSYFS6-EWQ_nLfLrxq-4YY_gJmQ4pwPK9RJBWfwke0SyCVj2Z3_3JgjISwkRRG84CFnW2ekxzYQwl8wUfCR8J1jpz8n8OAAb_BEz4dNoDyAZFfxzcNgMbCqXT-jgUN62FPCvGST4QxTIar6y8aNr6l7bix3mG_wdOl-AJIRLqU98SI1cGmKzRRWkUkrwBQ5WED7gXkQDDlbK');"></div>
+<div class="absolute bottom-0 left-0 right-0 bg-green-600 text-white text-[9px] font-bold text-center py-0.5">
+                    OPEN
+                </div>
+</div>
+<div class="flex flex-col flex-1 justify-between py-0.5">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-gray-900 dark:text-white line-clamp-1">Organic Meats &amp; Co.</h3>
+<div class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded-md">
+<span class="text-xs font-bold text-green-700 dark:text-green-400">4.9</span>
+<span class="material-symbols-outlined text-green-700 dark:text-green-400 fill-current" style="font-size: 10px; font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">Free Range Chicken • Organic Mutton</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 14px;">location_on</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">1.5 km • Green Street</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100 dark:border-gray-800 border-dashed">
+<span class="text-[10px] font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        Open: 8 AM - 8 PM
+                     </span>
+<span class="text-[10px] font-semibold text-primary">Free Delivery</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="fixed bottom-0 left-0 w-full bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800 pb-safe pt-2 px-6 z-50 shadow-[0_-5px_10px_rgba(0,0,0,0.02)]">
+<div class="flex items-center justify-between h-16">
+<button class="flex flex-col items-center justify-center gap-1.5 text-primary w-14 group">
+<div class="relative">
+<span class="material-symbols-outlined fill-current" style="font-variation-settings: 'FILL' 1; font-size: 26px;">storefront</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-ping"></span>
+</div>
+<span class="text-[10px] font-bold">Shops</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-14">
+<span class="material-symbols-outlined" style="font-size: 26px;">category</span>
+<span class="text-[10px] font-medium">Items</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-14">
+<span class="material-symbols-outlined" style="font-size: 26px;">receipt_long</span>
+<span class="text-[10px] font-medium">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-14">
+<span class="material-symbols-outlined" style="font-size: 26px;">person</span>
+<span class="text-[10px] font-medium">Account</span>
+</button>
+</div>
+</nav>
+<div class="h-6 w-full bg-white dark:bg-surface-dark fixed bottom-0 z-50 pointer-events-none pb-safe"></div>
+</body></html>

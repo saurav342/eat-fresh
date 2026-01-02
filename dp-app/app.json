@@ -1,0 +1,36 @@
+{
+    "expo": {
+        "name": "EatFresh Partner",
+        "slug": "eatfresh-partner",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "newArchEnabled": true,
+        "splash": {
+            "image": "./assets/splash-icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#f45925"
+        },
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.eatfresh.partner"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#f45925"
+            },
+            "package": "com.eatfresh.partner"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png",
+            "bundler": "metro"
+        },
+        "scheme": "eatfreshpartner",
+        "plugins": [
+            "expo-router",
+            "expo-font"
+        ]
+    }
+}

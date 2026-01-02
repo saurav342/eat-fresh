@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Partner Navigation Screen</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f45925", // Vibrant orange-red from prompt
+              "background-light": "#f8f6f5",
+              "background-dark": "#221410",
+              "surface-light": "#ffffff",
+              "surface-dark": "#2d1e1a",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+            boxShadow: {
+                "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.1)",
+                "up": "0 -4px 20px -2px rgba(0, 0, 0, 0.1)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar hiding for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Simulated swipe slider animation styles */
+        .swipe-track {
+            background: linear-gradient(to right, #f45925 50%, #fdehe8 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            transition: all .5s ease-out;
+        }
+        .group:active .swipe-track {
+            background-position: left bottom;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased h-screen w-full overflow-hidden text-[#1c110d] dark:text-[#fcf9f8]">
+<div class="relative h-full w-full flex flex-col">
+<!-- LAYER 1: Full Screen Map Background -->
+<div class="absolute inset-0 z-0 w-full h-full bg-slate-200">
+<!-- Map Image -->
+<div class="w-full h-full bg-cover bg-center opacity-90" data-alt="Map showing street view of Varthur Bangalore with navigation route" data-location="Bangalore" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMECpUovPPFckJOvsdBM3VohkNpsh_XFiPMD5ye12rvJn-EDfd-U0ymdkOYro5YHzR6ueVA4t06-KhwOuj96hl4jqi9kXUsXFxf7K_1PfUHkjqQ99BMPT1VPQQOSfZBy65UAD_C__rSNbw8OZ4orBtfYGxx7j-MDF9AFbbglCzMtp2TobAAMAtl3FmgDHX_8Md4dUeutyg0Jv--9z8gXWpa-_0vD7e7QX-MePdB04UTyzfHpv2CSVl1hQlVfNSl8GFQavjWIK4XL53");'></div>
+<!-- Simulated Route Overlay (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+<!-- A path simulating a route -->
+<path class="drop-shadow-lg" d="M 180 300 Q 220 450 180 600" fill="none" stroke="#f45925" stroke-dasharray="10 0" stroke-linecap="round" stroke-width="6"></path>
+<!-- Destination Pin -->
+<g transform="translate(180, 300)">
+<circle class="animate-pulse" cx="0" cy="0" fill="#f45925" r="12"></circle>
+<circle cx="0" cy="0" fill="white" r="6"></circle>
+</g>
+<!-- Rider Location Pin (Simulated near bottom center) -->
+<g transform="translate(180, 600)">
+<circle cx="0" cy="0" fill="#f45925" fill-opacity="0.2" r="24"></circle>
+<circle cx="0" cy="0" fill="white" r="14" stroke="#f45925" stroke-width="4"></circle>
+</g>
+</svg>
+</div>
+<!-- LAYER 2: Top Floating Header -->
+<div class="absolute top-0 left-0 w-full z-20 px-4 pt-12 pb-4 pointer-events-none">
+<div class="flex items-center justify-between pointer-events-auto">
+<!-- Back Button -->
+<button class="bg-surface-light dark:bg-surface-dark shadow-soft size-12 rounded-full flex items-center justify-center text-gray-800 dark:text-white transition-transform active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<!-- Status/Title Pill -->
+<div class="bg-surface-light dark:bg-surface-dark shadow-soft px-5 py-2.5 rounded-full flex items-center gap-3">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Pickup In</span>
+<span class="text-lg font-bold text-primary leading-none">12 min</span>
+</div>
+<div class="h-8 w-px bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Distance</span>
+<span class="text-lg font-bold text-gray-800 dark:text-gray-100 leading-none">3.2 km</span>
+</div>
+</div>
+<!-- Help/SOS Button -->
+<button class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 shadow-soft size-12 rounded-full flex items-center justify-center transition-transform active:scale-95 border border-red-200 dark:border-red-800">
+<span class="material-symbols-outlined">support_agent</span>
+</button>
+</div>
+</div>
+<!-- LAYER 3: Floating Action Buttons (Right Side) -->
+<div class="absolute right-4 bottom-[400px] z-20 flex flex-col gap-3 pointer-events-auto">
+<button class="bg-surface-light dark:bg-surface-dark shadow-soft size-12 rounded-xl flex items-center justify-center text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-primary">my_location</span>
+</button>
+<button class="bg-surface-light dark:bg-surface-dark shadow-soft size-12 rounded-xl flex items-center justify-center text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- LAYER 4: Bottom Sheet (Action Area) -->
+<div class="absolute bottom-0 left-0 w-full z-30 bg-surface-light dark:bg-surface-dark rounded-t-3xl shadow-up flex flex-col max-h-[60vh]">
+<!-- Drag Handle -->
+<div class="w-full flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing">
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+</div>
+<!-- Content Container -->
+<div class="px-5 pb-6 pt-2 flex flex-col gap-5 overflow-y-auto no-scrollbar">
+<!-- Trip Header: Shop Info -->
+<div class="flex flex-col gap-1">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="text-primary text-sm font-bold uppercase tracking-wider mb-1">Pickup at Shop</span>
+<h2 class="text-2xl font-extrabold text-[#1c110d] dark:text-white leading-tight">Varthur Fresh Cuts</h2>
+</div>
+<div class="bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-xs font-bold border border-green-200 dark:border-green-800">
+                            Prepaid
+                        </div>
+</div>
+<div class="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 0;">storefront</span>
+<p class="text-sm font-medium line-clamp-1">Shop #4, Main Road, Near Varthur Lake</p>
+</div>
+</div>
+<!-- Action Grid: Navigate & Call -->
+<div class="grid grid-cols-4 gap-3">
+<!-- Navigation Button (Primary Action) -->
+<button class="col-span-3 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white h-12 rounded-xl font-bold shadow-md active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">directions</span>
+<span>Start Navigation</span>
+</button>
+<!-- Call Button (Secondary) -->
+<button class="col-span-1 flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white h-12 rounded-xl font-bold border border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800"></div>
+<!-- Order Snippet -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-[#382824] border border-gray-100 dark:border-[#4a3630]">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center shadow-sm text-primary">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Order #4421</span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">1kg Chicken Curry Cut + 2 more</span>
+</div>
+</div>
+<button class="text-primary font-bold text-sm">View</button>
+</div>
+<!-- Slider Button: Swipe to Arrive -->
+<!-- We use a div to simulate the visual of a slider -->
+<div class="relative w-full h-14 bg-gray-200 dark:bg-gray-800 rounded-full p-1.5 overflow-hidden group cursor-pointer select-none">
+<!-- Text Behind -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="text-gray-500 dark:text-gray-400 font-bold text-sm tracking-widest uppercase ml-10">Slide to Arrive</span>
+</div>
+<!-- Draggable Thumb (Visual Only) -->
+<div class="h-full aspect-square bg-primary rounded-full shadow-md flex items-center justify-center text-white relative z-10 transition-transform transform group-active:translate-x-[260px] duration-500 ease-out">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+<!-- Active Color Track (Revealed on swipe) -->
+<div class="absolute inset-y-0 left-0 w-full bg-primary/20 rounded-full opacity-0 group-active:opacity-100 transition-opacity duration-300"></div>
+</div>
+<!-- Footer Note -->
+<p class="text-center text-xs text-gray-400 dark:text-gray-500 font-medium">
+                    Ensure you are wearing your safety gear.
+                </p>
+</div>
+</div>
+</div>
+</body></html>

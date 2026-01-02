@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details - Partner View</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                "primary": "#f45925",
+                "background-light": "#f8f6f5",
+                "background-dark": "#221410",
+                "surface-light": "#ffffff",
+                "surface-dark": "#2f1f1a",
+                },
+                fontFamily: {
+                "display": ["Plus Jakarta Sans", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased overflow-x-hidden">
+<!-- Main Wrapper -->
+<div class="relative flex flex-col min-h-screen w-full pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 py-3 border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center justify-between">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-gray-900 dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Order #9281</h1>
+<button class="flex items-center justify-center text-primary font-bold text-sm bg-primary/10 px-3 py-1.5 rounded-full">
+                    Help
+                </button>
+</div>
+</header>
+<!-- Status & Timer Section -->
+<section class="px-4 py-6">
+<div class="flex flex-col items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-200 dark:border-green-800">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-bold text-green-700 dark:text-green-400 uppercase tracking-wide">Status: Ready for Pickup</span>
+</div>
+<!-- Timer Display -->
+<div class="flex gap-4 w-full max-w-xs justify-center">
+<div class="flex flex-col items-center gap-1">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="text-2xl font-extrabold text-primary">14</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Min</span>
+</div>
+<div class="flex items-center h-16 pb-6">
+<span class="text-2xl font-bold text-gray-300 dark:text-gray-600">:</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-surface-light dark:bg-surface-dark shadow-sm border border-gray-100 dark:border-gray-800">
+<span class="text-2xl font-extrabold text-gray-900 dark:text-white">32</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Sec</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Visualization -->
+<section class="px-4 pb-6">
+<div class="relative w-full aspect-[2/1] rounded-xl overflow-hidden shadow-sm ring-1 ring-gray-900/5 dark:ring-white/10 group">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Map showing route from Varthur Main Rd to Prestige Lakeside Habitat" data-location="Varthur, Bangalore" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0yk0awrSbH_pPzMrS9Wp25y8kVmqASg9Irls1uy7SphTTiC0mk59_PSCnng1CyGfmtoTRkJSjTVws45gcoOHyD_8AldAW5mvJuhdPzp0kNTXKlLl8mLzEIA5N_exGJXRgkWrxKg8odQsQjVHx6ckDiVcg8JS4Q3YLwrmfJKEwUWhO4-aZvJM_aBRSbU-M-iVpL8aZqBgF607mJoA04E1PaF3UihDU7g-vNR1IMu2dVzpci03yfRMAzciAiWG3PTAFUo4txgGENfHK");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">near_me</span>
+<span class="text-xs font-bold text-gray-900 dark:text-white">2.4 km • 12 mins</span>
+</div>
+<!-- Interactive overlay hint -->
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 p-2 rounded-full shadow-sm cursor-pointer hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-gray-700 dark:text-gray-300 text-sm">open_in_full</span>
+</div>
+</div>
+</section>
+<!-- Timeline / Steps -->
+<section class="px-4 flex flex-col gap-6 relative">
+<!-- Vertical connecting line -->
+<div class="absolute left-[34px] top-8 bottom-24 w-0.5 bg-gray-200 dark:bg-gray-700 -z-10 border-l-2 border-dotted border-gray-300 dark:border-gray-700"></div>
+<!-- STOP 1: PICKUP -->
+<div class="flex flex-col gap-4">
+<!-- Header for Stop 1 -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/30 z-10 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-sm font-bold">storefront</span>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Pickup</h3>
+<p class="text-xs text-gray-400 dark:text-gray-500">Order is ready</p>
+</div>
+</div>
+<!-- Card for Shop Details -->
+<div class="ml-14 bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="text-lg font-bold text-gray-900 dark:text-white leading-tight">Nandhini Chicken Stall</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">12, Varthur Main Rd, Bangalore</p>
+</div>
+<img alt="Shop Logo" class="w-10 h-10 rounded-lg object-cover bg-gray-100" data-alt="Logo of Nandhini Chicken Stall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC66bZXaxXsuy3tTDhZWV-nvpSUDZoKDuD-80E80H-fJYcd3xHbI54p9hNNa0-FLdfdIQcHh4M8Amz7b6bP0xOcV6agAwws6X-vtq2fgCr1rdmt1Zuf4euFjMH5-VhpPkFwrQQpjEewu_dFTqnj4Dcvls1v1Ju471T7ER9NwEBl_vcdFB45-7Dt4ntq-iyDiXSGZJJDWwuJPa9O6nWdnyVuPT1co-l1d6hVaza7RDM8VF8bT-UVKZ9XPUU4k6w9H34-CqKBTYX2X5b1"/>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mb-4">
+<button class="flex-1 bg-primary text-white py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">navigation</span>
+                            Navigate
+                        </button>
+<button class="w-12 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white py-2.5 rounded-lg flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 active:scale-95 transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+<!-- Order Items Accordion (Open state) -->
+<div class="border-t border-gray-100 dark:border-gray-800 pt-3">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold text-gray-500 uppercase tracking-wide">2 Items to Collect</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<div class="bg-orange-50 dark:bg-orange-900/10 p-1.5 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-sm">egg_alt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Chicken Skinless Curry Cut</p>
+<span class="text-xs font-bold text-gray-500 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">1kg</span>
+</div>
+<p class="text-xs text-gray-400 mt-0.5">₹280</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="bg-red-50 dark:bg-red-900/10 p-1.5 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400 text-sm">set_meal</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Mutton Liver</p>
+<span class="text-xs font-bold text-gray-500 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">250g</span>
+</div>
+<p class="text-xs text-gray-400 mt-0.5">₹170</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- STOP 2: DROP -->
+<div class="flex flex-col gap-4">
+<!-- Header for Stop 2 -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center shrink-0 z-10">
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-sm font-bold">home_pin</span>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Drop</h3>
+<p class="text-xs text-gray-400 dark:text-gray-500">Est. 12:45 PM</p>
+</div>
+</div>
+<!-- Card for Customer Details -->
+<div class="ml-14 bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 opacity-60 grayscale-[50%] hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="text-lg font-bold text-gray-900 dark:text-white leading-tight">Rahul K.</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Prestige Lakeside Habitat, Varthur Gunjur Road</p>
+</div>
+</div>
+<!-- Action Buttons (Secondary state) -->
+<div class="flex gap-3">
+<button class="flex-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">navigation</span>
+                            Navigate
+                        </button>
+<button class="w-12 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-2.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Banner -->
+<section class="px-4 mt-6">
+<div class="bg-gray-900 dark:bg-black rounded-xl p-4 flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-3">
+<div class="bg-white/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-white">payments</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Cash on Delivery</p>
+<p class="text-gray-400 text-xs">Collect from customer</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block text-xl font-bold text-white">₹450</span>
+</div>
+</div>
+</section>
+<!-- Bottom Action Bar (Sticky) -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 p-4 pb-8 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="relative h-14 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden flex items-center">
+<!-- Swipe text -->
+<div class="absolute inset-0 flex items-center justify-center z-0">
+<span class="text-gray-500 dark:text-gray-400 font-bold text-sm tracking-wide animate-pulse">Slide to Confirm Pickup</span>
+<span class="material-symbols-outlined text-gray-400 text-sm ml-2">chevron_right</span>
+<span class="material-symbols-outlined text-gray-400 text-sm -ml-1 opacity-60">chevron_right</span>
+<span class="material-symbols-outlined text-gray-400 text-sm -ml-1 opacity-30">chevron_right</span>
+</div>
+<!-- Slider Knob -->
+<div class="absolute left-1 top-1 bottom-1 w-16 bg-primary rounded-full shadow-lg flex items-center justify-center z-10 cursor-pointer touch-manipulation transform transition-transform active:scale-95 active:translate-x-1">
+<span class="material-symbols-outlined text-white">check</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Simple JS to handle dark mode toggle for demonstration if needed, 
+        // though strictly CSS solution requested, this is just inline helper 
+        // to conform to user instructions about not adding JS files.
+        // We will leave the class="light" in HTML tag as requested.
+    </script>
+</body></html>

@@ -1,0 +1,162 @@
+{
+    "products": [
+        {
+            "id": "p1",
+            "shopId": "1",
+            "name": "Farm Fresh Chicken Curry Cut",
+            "description": "Tender, antibiotic-free chicken cuts perfect for Indian curries. Our chickens are farm-raised on a 100% vegetarian diet, ensuring soft texture and rich flavor.",
+            "weight": "500g",
+            "pieces": "12-14 Pcs",
+            "price": 140,
+            "originalPrice": 160,
+            "discount": 12,
+            "category": "Chicken",
+            "tags": [
+                "Bestseller",
+                "Antibiotic Free"
+            ],
+            "isAvailable": true,
+            "serves": 4,
+            "features": [
+                "Skinless",
+                "Hygienically Cleaned",
+                "Halal Certified"
+            ],
+            "source": "Karnataka Farms",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLI_gJGxnGTT5n4h3MEig9rL_zBqSi5zyoOfGw7meoZph7eb33RTyh1ip6wfkXiXQLCQV3OpWPrxpnxFI24TjuwCk969aQDp9r2hjD-Oto-8ZM45SCssOIlZi5hagD_i6zdoHnta21PAU9ZV8HjqyH7c1G674IBD12yYo2sWNEM1jLqItBnsHsx7-CjkPFl8yGx6teMXX76_5_zdNZxg0amAuCCbYRuBQ-ML7z901q9o7IUaoJxRul-SZC-o3GYbWMLw5MxnENfZ2r"
+        },
+        {
+            "id": "p2",
+            "shopId": "1",
+            "name": "Premium Mutton Curry Cut",
+            "description": "Premium quality mutton from grass-fed goats. Perfect for slow-cooked curries and biryanis.",
+            "weight": "500g",
+            "price": 450,
+            "category": "Mutton",
+            "tags": [
+                "Premium"
+            ],
+            "isAvailable": true,
+            "features": [
+                "Bone-in",
+                "Fresh Cut"
+            ],
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzbJn2nlSMNiXEh-nkgYplkX71vuMt6wqTQdRpB_5HeuDX9HWbxV6nzzwOdJlg4XWO42DK5sGzg10fvBD6pHbceklz5Xgke_QjtWaW-cQXSyzW0o54sMjGdM-v--d3C_4w0KfmCRXiCGqqPr4XPZR2WxQejEvBW0Udz5E9JwmXy4L2mqkH-ataNur-u0zj2wb8KYsEurZahPQFzxQI1NmK8421_vd4zl_T-7Qv0btZPmvmj4XTblcTBhj72nw6AybcMBonOr82plQn"
+        },
+        {
+            "id": "p3",
+            "shopId": "1",
+            "name": "Rohu Fish (Bengali Cut)",
+            "description": "Fresh Rohu fish cut in traditional Bengali style. Perfect for fish curry.",
+            "weight": "1kg",
+            "price": 220,
+            "category": "Fish",
+            "tags": [
+                "Fresh Catch"
+            ],
+            "isAvailable": true,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDroCJEgMO2PXrC8fE-vTXRZvu9RGDfJlCap4tbfE3uiaatjxj9vAbxPcirTWsvvrNyr6rwRO8_hrr99Pnpoz7Tnxjy3VJ00lk03wfUUlvGKIUanjn-3FrhC6wf-ahx-oITcnXmS0P3wIIsuptSxeB5KbhHxB6DdAt8EMgILVe6-O-5-16Vo33hszFe6Erv0Wo0nr9lee7Q9SzgSiMM5RNV76MFVfLDs5ex8PK8ekVUHxoP3gr9h-Sj3PI-sRsUixd-6JC4Rhxzjlhr"
+        },
+        {
+            "id": "p4",
+            "shopId": "1",
+            "name": "Tiger Prawns (Cleaned)",
+            "description": "Premium tiger prawns, cleaned and deveined. Ready to cook.",
+            "weight": "250g",
+            "price": 380,
+            "category": "Prawns",
+            "tags": [
+                "Deveined"
+            ],
+            "isAvailable": false,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCYOMkzNn0J2Yr5Lg3i2koQH2crYNYyLFK27bGYzg4fV9GAhpPHXrOaCzM_vksBBoTDncZlUpEFKIpVBKIjOopCWhkAIcW7fY0DmbHZa9QH0Z4ApZV76R7dViBT9G2ZPmJMoIe-5OgHzHapQbp37pqP_zXeOgsaG47WaObZwyWwQ93ls4SZXfz8MGHULL3yHihGryq9NShTagH8YCeT1f0W8KG8hkEFQWDmLno2S6KmBAdRu89wyZ_aTnef-oBGYFfJ-ZtA-VlFS9GN"
+        },
+        {
+            "id": "p5",
+            "shopId": "1",
+            "name": "Chicken Boneless Breast",
+            "description": "Lean chicken breast, cubed and ready for grilling or stir-fry.",
+            "weight": "500g",
+            "price": 180,
+            "category": "Chicken",
+            "tags": [
+                "Cubed"
+            ],
+            "isAvailable": true,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAbjTL0UEayfKGnRXnH-jcBpR3JwDOhm2jK5A3MgghHERjKBNPYp-FNab3s1viKvJlEPG2U7Z_h-HHfj_TsQI4hfzRkiqi9eEcbokxgEkQy2WutQAAcBxVMXKyfnnawwPGv5230iX159tGOGd2goujXWVflLE6cYUggtqIrTBzllUj6zJ0h3HsSoo5aiSz3HmbNbK73N1tDJqs2Rpol5m7_vvzhpqB4FaSdAo5_ycUt8B5XJYlhs6jbuYJr4ybqw8WCY1w_8l5wrptc"
+        },
+        {
+            "id": "p6",
+            "shopId": "1",
+            "name": "Chicken Drumsticks",
+            "description": "Fresh chicken drumsticks, perfect for grilling and frying.",
+            "weight": "500g",
+            "price": 150,
+            "category": "Chicken",
+            "tags": [
+                "Skinless"
+            ],
+            "isAvailable": true,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD-tUDr4qRrsB6ZAfs_MnwY2nbsOOhM2JLDvkbjknUAu4Dp9OwdJfGJU_Mv1lJ8-RDuSqElfiPsNld4K8QjozaEpBIyUr-klloabibkCGnXDvILCJUmPF5QjFAW4A_llQxk64ewJCtVTKk81KMshMeolYt1DNZ_TiOi9mTWTeP97VjLUNCE2RzLFkgWs6NnEwMRVEWTWUTwponGXrGxq6T1zJEMSJSbS7ZmqWSnXtPSrw66-nnSseExFm6Ww_Gt02LmDzvpNlqs4v5j"
+        },
+        {
+            "id": "p7",
+            "shopId": "1",
+            "name": "Premium Chicken Curry Cut",
+            "description": "Tender, antibiotic-free chicken cuts perfect for Indian curries. Farm-raised on 100% vegetarian diet.",
+            "weight": "500g",
+            "pieces": "12-14 Pcs",
+            "price": 240,
+            "originalPrice": 280,
+            "discount": 14,
+            "category": "Chicken",
+            "tags": [
+                "Premium",
+                "Antibiotic Free"
+            ],
+            "isAvailable": true,
+            "serves": 4,
+            "rating": 4.8,
+            "reviewCount": 1200,
+            "features": [
+                "Skinless",
+                "Hygienically Cleaned",
+                "Halal Certified"
+            ],
+            "source": "Karnataka Farms",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD3eRWj4eEQ7g1zJZrfyIGRKNVDekVMTYfkjsYq12CTdxFHBEnMDpR64mc5Q_0mb1hvy0TDe-6KUpxq4wMaGJYowXXYzrXX7EzAEYBchQ4Ot3mSvtZtDKZk8t8uzJ96-AFHo0S0HQDo0pAW9wv5PPE5NPB85hUmZLQntv-0BjxLV1r5sXsuRq2sMhFHwyaVq4T-_sJ4r0MrEDYBDitW51a_eM5KG6Vn2AmNOIbhtdh4jQPG_ylr9t8j8xEjE7iCXW57oIkwyvcTfPVm"
+        }
+    ],
+    "addons": [
+        {
+            "id": "a1",
+            "name": "Spicy Chettinad Masala",
+            "price": 60,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuB3CBKp2BO198z53w9X7_eZ1hVsCfzDgQttU0vZH_I_ECHG41tkSJ6aOcpAQ3okK4EqaJptylZGdsdB50e86rTKnsb-FXouyt81028erknSZA9NCfWUEUV-_bUujjheEwzSycrW-eZXeTu2Fc99lfbTNIOiyy0wzO2bx89mEUDkk_znDSYjHlh133yxzh-vA2MWj8ER7W2VntzHqx2ShmDKdI539HwuFolFiKBKXB__7SrvG_QQJk31L4Nm-2jRpzzhoIa7skfQku1M"
+        },
+        {
+            "id": "a2",
+            "name": "Ginger Garlic Paste",
+            "price": 45,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDCwb23XFOu7B5S2WBQMtCDHiFCoMHVQIISb1YX3DNJnC5vdMlryydz__6_bV5xkrE1FQoSh9KxoLBODjWMneGZru395CC2HE8fLG22JhAadA1Sh6TqXt5IdAMv7JDy8sasOHIPM4-o7c59q0xt6_WWjyhB_-ONGVS4h3bIJJNKemX72-9idS2LBFucZ0PrpisTsoAb4hM6WcHMk3O-ahStpZKHT98-1yiiVW-CKri8s4qtp3v2h8p3zSEtJqe6AvAa4KA7_aWhoPzl"
+        },
+        {
+            "id": "a3",
+            "name": "Soup Bones (500g)",
+            "price": 90,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDE_T1kVVsfmxKbZ78qEqHYO1J8wcpjlVWWklBarQ0OE4Z5oy_T0BF_0j6NBCFtrkIjgxX_YmPqakssFQtiKPl7fpYbj8k54OH2-ISXqD6omLksSMssf3iWzTLCEeutvLqOF5y2AS6mFIRLsiSxTOiELAgRdYBK-XmkF6T9bptK7ua7R4iIfCjPEmvk0UXMGfAWJO3bJlwRgyng2AtNas0Fbi8kxfxJgPZMnalzeD3eiFHCi54ekTW9UFZkwD2tAljAnJ4bUAevIlex"
+        },
+        {
+            "id": "a4",
+            "name": "Spicy Tikka Marinade",
+            "price": 49,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCa4Eh-0_RhisreqCazNpGFJuB0F9CPUxnvooUgA8BhkgQgt12OILbo9daHhhNz1IeBzWH7hwqwA1l5N4pGID1xZ9cZL_8N1rZMwG30ydLw74bCLzmmp_1AzgHroTZCc47CchRMagK2ggdkGWDPGO9xPf45gBWkZJBsbYz5z7yhsQ8SeWIcmwTXR8jbwnTBPHuK6jPOZtIGnE-4qVyoe1VZStjGAY-w9vlV4evfvXjSVT03Pcpm54ouw8TSQylDNC2P_ndNujQkOQG0"
+        },
+        {
+            "id": "a5",
+            "name": "Brown Eggs (6 pack)",
+            "price": 60,
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuChkaDjT-bzG3YDxp2imC5g5nUykLEK6zCj447nxEpL77qB9gouWwiZCBiMRtW9oxguQZsdyA1Sp8szfvti8I2STYIcVpOqZSVa8PqCky-Efn1TZjQNn7BrrMDES4K2tM56wmWsfZ1ZdOlTiDh2zt5uBWhKa1sZ7eTWyqh-vT6UaVZtjFB2qHQjPzKb6seq8K8l1zWej2w8FopWpKr8f4yadlVeZLDiWWuTuYjES-T2Fcja6FIzmy9NgQKdEH8euXZPiWAPNLVgGu0T"
+        }
+    ]
+}

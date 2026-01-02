@@ -1,0 +1,24 @@
+{
+    "categories": [
+        {
+            "id": "cat1",
+            "name": "Chicken",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDz28GJWS3Qb-cL3U895G4ddsAN9yKwB_IYze_Kd-LGGR18xK5WCqpKPI4LMCraddkt3nSTItbtEW_1rK3oMxDLzZ9jPRfoAq8reYLtXWxKolm0dNIQ0wYWLpSFbUTQXhrFdzPFZNhHdrsEfaHkjEGT_Mm7MkGuaFzv6K2FWbNjDQS7NCeyWnhdQYPXnDOZY73_2FhXihbDp7usxd_fuBlqOd7Coc0oMva43Glf83b4_UfiQzO2gVQ11Stae8iGWRjp4N5G6qDUYOrQ"
+        },
+        {
+            "id": "cat2",
+            "name": "Mutton",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBPNmJowleVlFHBGiGN_rRqV4F7jmgfEvIHMHzEA0WsjviC08CBmf5Gix8iUTA5ypOXNtNbz4pjVwe6wYNLDbvjTwO32h3dfYWOTrPgHIN9BwSGQc33FzJu44V4Rq0T769dHQu494EXCyrjrBZagqw0mt__hUGpT1rYQAI5tFLYUl1n-hql16uLVcbeR2dq5la6gVLs2ns8B4AM-Ws6j2L2oPcC_8dbxX1KJziokGyzMep3sF510dGDErshSWwtVkLuaWtzDA7Oz7LM"
+        },
+        {
+            "id": "cat3",
+            "name": "Fish",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD_rPOpwddiCzLKJE8Oqq_HoG_dKKu5DNCE6XyaWqEBG94_nT6cQjZV3SuL_9fU2v9qIPKYmWn7hscPDPY1Mzj9rym_MS0byDd1Q2kp5hE4lPjlK3h46ZrZzaDQXLQE1LEj1ko2NYX3TCzz00RqIf1EMTSzPhwsQD9XVKGD_-LRRY8X043HD1TSoDcXrxREO0vz3_HEKzm3P3m6MwTN9SZm9bWxzNE2K4QgVSvdNNTfiVukNvm0jt6avzov_9mxryLIpuEaGO902880"
+        },
+        {
+            "id": "cat4",
+            "name": "Eggs",
+            "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAAnZkSwtQL9t8iTHdnckbmHRvd-uF0vWh0lMuymfd_tB_uz9rBxOrywBtkKuA8SFvt1gVssOOykMaD9KykHGWs4JxhmVamuo_YU0lafpTbgpBZjxOH6W9OaUgzng__zbLnsqlvbsbfp9BHK0qsodT18f-R3NpDCx5ucFEsP9lvF8TizXyvwWQcQ4oy-uwrzYEd7OU25HetF7U2LTSgX2k9IuJ_jtvP6XQNB2qODY3dioWb8FoETRJuLWyHNlnmISBwGbFkRkGyf7ww"
+        }
+    ]
+}
