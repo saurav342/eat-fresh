@@ -1,0 +1,27 @@
+'use client';
+
+import Sidebar from './Sidebar';
+import Header from './Header';
+import { ReactNode } from 'react';
+
+interface DashboardLayoutProps {
+    children: ReactNode;
+    title: string;
+    subtitle?: string;
+}
+
+export default function DashboardLayout({
+    children,
+    title,
+    subtitle,
+}: DashboardLayoutProps) {
+    return (
+        <div className="min-h-screen bg-background">
+            <Sidebar />
+            <div className="ml-64 transition-all duration-300">
+                <Header title={title} subtitle={subtitle} />
+                <main className="p-8">{children}</main>
+            </div>
+        </div>
+    );
+}
