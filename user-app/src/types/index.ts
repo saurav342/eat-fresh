@@ -93,6 +93,7 @@ export interface PaymentInfo {
 
 export interface Order {
     id: string;
+    orderId?: string;
     items: CartItem[];
     status: OrderStatus;
     deliveryAddress: DeliveryAddress;

@@ -139,4 +139,17 @@ export interface DashboardStats {
     partnersGrowth: number;
     ordersGrowth: number;
     revenueGrowth: number;
+    // Today's stats
+    todayOrders?: number;
+    todayDelivered?: number;
+    todayCancelled?: number;
+    todayRevenue?: number;
+    // Order breakdown
+    pendingOrders?: number;
+    confirmedOrders?: number;
+    preparingOrders?: number;
+    outForDeliveryOrders?: number;
+    deliveredOrders?: number;
+    // Top shops
+    topShops?: Array<{ name: string; orders: number; revenue: string }>;
 }

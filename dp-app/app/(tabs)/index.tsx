@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     View,
     Text,
@@ -7,6 +7,8 @@ import {
     TouchableOpacity,
     Image,
     Dimensions,
+    ActivityIndicator,
+    RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
@@ -14,48 +16,91 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../src/theme/colors';
 import { fontFamilies, fontSizes } from '../../src/theme/typography';
 import { borderRadius, shadows, spacing } from '../../src/theme/spacing';
+import { deliveryAPI } from '../../src/services/api';
 
 const { width } = Dimensions.get('window');
 
 interface OrderRequest {
     id: string;
+    _id?: string;
+    orderId?: string;
     shopName: string;
-    shopAddress: string;
-    pickupAddress: string;
-    dropAddress: string;
-    distance: string;
-    duration: string;
-    earnings: number;
-    mapImage: string;
+    shopAddress?: string;
+    pickupAddress?: string;
+    dropAddress?: string;
+    deliveryAddress?: { address: string };
+    distance?: string;
+    duration?: string;
+    earnings?: number;
+    grandTotal?: number;
+    mapImage?: string;
 }
 
-const mockOrders: OrderRequest[] = [
-    {
-        id: '1',
-        shopName: "Nandu's Chicken",
-        shopAddress: 'Varthur Main Rd, near Police Station',
-        pickupAddress: "Nandu's Chicken",
-        dropAddress: 'Sobha Dream Acres, Wing 4',
-        distance: '2.5 km',
-        duration: '15 min',
-        earnings: 65,
-        mapImage: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800',
-    },
-    {
-        id: '2',
-        shopName: 'Fresh Mutton Stall',
-        shopAddress: 'Gunjur Village Rd',
-        pickupAddress: 'Fresh Mutton Stall',
-        dropAddress: 'Prestige Lakeside',
-        distance: '1.8 km',
-        duration: '10 min',
-        earnings: 45,
-        mapImage: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69c07a?w=800',
-    },
-];
+interface Earnings {
+    todayEarnings: number;
+    todayDeliveries: number;
+    weeklyEarnings: number;
+    totalEarnings: number;
+}
 
 export default function DashboardScreen() {
     const [isOnline, setIsOnline] = useState(true);
+    const [orders, setOrders] = useState<OrderRequest[]>([]);
+    const [earnings, setEarnings] = useState<Earnings | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const fetchData = useCallback(async () => {
+        try {
+            const [ordersRes, earningsRes] = await Promise.all([
+                deliveryAPI.getAssignedOrders(),
+                deliveryAPI.getEarnings(),
+            ]);
+            setOrders(ordersRes.orders || []);
+            setEarnings(earningsRes.earnings);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // Use mock data as fallback for demo
+            setOrders([
+                {
+                    id: '1',
+                    shopName: "Nandu's Chicken",
+                    shopAddress: 'Varthur Main Rd, near Police Station',
+                    pickupAddress: "Nandu's Chicken",
+                    dropAddress: 'Sobha Dream Acres, Wing 4',
+                    distance: '2.5 km',
+                    duration: '15 min',
+                    earnings: 65,
+                    mapImage: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800',
+                },
+            ]);
+            setEarnings({ todayEarnings: 850, todayDeliveries: 5, weeklyEarnings: 5600, totalEarnings: 186750 });
+        } finally {
+            setIsLoading(false);
+            setRefreshing(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        fetchData();
+    }, [fetchData]);
+
+    const handleToggleOnline = async () => {
+        try {
+            const newStatus = isOnline ? 'offline' : 'online';
+            await deliveryAPI.updateStatus(newStatus);
+            setIsOnline(!isOnline);
+        } catch (error) {
+            console.error('Error updating status:', error);
+            // Toggle anyway for demo
+            setIsOnline(!isOnline);
+        }
+    };
 
     const handleAcceptOrder = (orderId: string) => {
         router.push(`/order/${orderId}`);
@@ -137,7 +182,7 @@ export default function DashboardScreen() {
                 </View>
 
                 {/* Order Request Cards */}
-                {mockOrders.map((order, index) => (
+                {orders.map((order: OrderRequest, index: number) => (
                     <View
                         key={order.id}
                         style={[

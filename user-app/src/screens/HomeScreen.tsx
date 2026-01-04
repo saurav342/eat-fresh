@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -10,13 +10,13 @@ import {
     StatusBar,
     SafeAreaView,
     FlatList,
+    ActivityIndicator,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { colors, borderRadius, shadows, spacing } from '../theme';
 import { ShopCard, CategoryPill } from '../components';
-import shopsData from '../data/shops.json';
-import categoriesData from '../data/categories.json';
+import { shopAPI, categoryAPI } from '../services/api';
 import { Shop, Category } from '../types';
 
 const BANNER_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCq1Yt-skzte7U_AUwseRQndVIVC34agHvpSG177KIYXvO9Jh8WM9DihMisF0LLNKjF6tecc6iD3OQLJMQCEff8FW8zVnB5AYxL2fLRuf5f9oBfvezuG3LzlVP7e7MeXQjIBNsZ0kDukXLRSqjc3_eZcv8x49pYk67RYDcC-ycblQ0yqHmNHfxSf1SlOmlvS70i6LFcH2KdByx519C8ucWc05MvK70wAkCEktZWnl6lCCgKv1-8zmoQWbo9_eFMkN6IrRZkuZ_ocghS';
@@ -29,8 +29,30 @@ const filters = [
 
 export default function HomeScreen() {
     const router = useRouter();
-    const shops = shopsData.shops as Shop[];
-    const categories = categoriesData.categories as Category[];
+    const [shops, setShops] = useState<Shop[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const [shopsRes, categoriesRes] = await Promise.all([
+                    shopAPI.getAll(),
+                    categoryAPI.getAll(),
+                ]);
+                setShops(shopsRes.shops || []);
+                setCategories(categoriesRes.categories || []);
+            } catch (err: any) {
+                setError(err.message || 'Failed to load data');
+                console.error('Error fetching data:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleShopPress = (shopId: string) => {
         router.push(`/shop/${shopId}`);
@@ -40,6 +62,15 @@ export default function HomeScreen() {
         // Navigate to category-filtered view
         console.log('Category pressed:', categoryId);
     };
+
+    if (isLoading) {
+        return (
+            <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+                <ActivityIndicator size="large" color={colors.primary} />
+                <Text style={{ marginTop: 16, color: colors.textSecondary }}>Loading...</Text>
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>

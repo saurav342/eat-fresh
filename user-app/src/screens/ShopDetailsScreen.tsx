@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
     View,
     Text,
@@ -8,14 +8,14 @@ import {
     Image,
     StatusBar,
     SafeAreaView,
+    ActivityIndicator,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, borderRadius, shadows, spacing } from '../theme';
 import { ProductCard, FloatingCartBar } from '../components';
 import { useCart } from '../context/CartContext';
-import shopsData from '../data/shops.json';
-import productsData from '../data/products.json';
+import { shopAPI } from '../services/api';
 import { Shop, Product } from '../types';
 
 const tabs = ['Best Sellers', 'Chicken', 'Mutton', 'Fish & Prawns'];
@@ -26,20 +26,45 @@ export default function ShopDetailsScreen() {
     const [activeTab, setActiveTab] = useState(0);
     const { items, totalItems, totalAmount, addItem, updateQuantity, getItemQuantity } = useCart();
 
-    const shop = useMemo(
-        () => shopsData.shops.find((s) => s.id === id) as Shop | undefined,
-        [id]
-    );
+    const [shop, setShop] = useState<Shop | null>(null);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const products = useMemo(
-        () => productsData.products.filter((p) => p.shopId === id) as Product[],
-        [id]
-    );
+    useEffect(() => {
+        const fetchData = async () => {
+            if (!id) return;
+            try {
+                setIsLoading(true);
+                const [shopRes, productsRes] = await Promise.all([
+                    shopAPI.getById(id),
+                    shopAPI.getProducts(id),
+                ]);
+                setShop(shopRes.shop);
+                setProducts(productsRes.products || []);
+            } catch (err: any) {
+                setError(err.message || 'Failed to load shop');
+                console.error('Error fetching shop:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, [id]);
+
+    if (isLoading) {
+        return (
+            <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+                <ActivityIndicator size="large" color={colors.primary} />
+                <Text style={{ marginTop: 16, color: colors.textSecondary }}>Loading shop...</Text>
+            </View>
+        );
+    }
 
     if (!shop) {
         return (
             <SafeAreaView style={styles.container}>
-                <Text>Shop not found</Text>
+                <Text style={{ textAlign: 'center', marginTop: 50 }}>Shop not found</Text>
             </SafeAreaView>
         );
     }
