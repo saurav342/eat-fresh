@@ -1,7 +1,7 @@
 const Order = require('../models/Order');
 const User = require('../models/User');
 const Shop = require('../models/Shop');
-const razorpay = require('../config/razorpay');
+const { getRazorpay } = require('../config/razorpay');
 const crypto = require('crypto');
 const { generateOrderId, calculateOrderTotals } = require('../utils/helpers');
 
@@ -137,6 +137,7 @@ const createRazorpayOrder = async (req, res) => {
             receipt: orderId,
         };
 
+        const razorpay = getRazorpay();
         const razorpayOrder = await razorpay.orders.create(options);
 
         res.json({
