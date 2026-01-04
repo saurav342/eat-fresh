@@ -10,6 +10,7 @@ export interface DeliveryAddress {
 
 export interface User {
     id: string;
+    _id?: string;
     name: string;
     email: string;
     phone: string;
@@ -40,6 +41,7 @@ export interface Document {
 
 export interface DeliveryPartner {
     id: string;
+    _id?: string;
     name: string;
     phone: string;
     avatar?: string;
@@ -89,6 +91,7 @@ export interface CartItem {
 
 export interface Order {
     id: string;
+    _id?: string;
     userId: string;
     userName: string;
     userPhone: string;

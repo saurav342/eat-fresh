@@ -3,8 +3,9 @@
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
 import SearchInput from '@/components/ui/SearchInput';
-import { mockDeliveryPartners } from '@/lib/mockData';
-import { useState } from 'react';
+import { adminAPI } from '@/lib/api';
+import { DeliveryPartner } from '@/lib/types';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
     Filter,
@@ -15,13 +16,36 @@ import {
     IndianRupee,
     CheckCircle,
     AlertCircle,
+    Loader2,
+    RefreshCw,
 } from 'lucide-react';
 
 export default function PartnersPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<string>('all');
+    const [partners, setPartners] = useState<DeliveryPartner[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const filteredPartners = mockDeliveryPartners.filter((partner) => {
+    const fetchPartners = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const response = await adminAPI.getPartners({
+                status: statusFilter !== 'all' ? statusFilter : undefined,
+                search: searchQuery || undefined,
+            });
+            if (response.partners) setPartners(response.partners);
+        } catch (error) {
+            console.error('Error fetching partners:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [statusFilter, searchQuery]);
+
+    useEffect(() => {
+        fetchPartners();
+    }, [fetchPartners]);
+
+    const filteredPartners = partners.filter((partner) => {
         const matchesSearch =
             partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             partner.phone.includes(searchQuery) ||
@@ -31,11 +55,11 @@ export default function PartnersPage() {
     });
 
     const stats = {
-        total: mockDeliveryPartners.length,
-        online: mockDeliveryPartners.filter((p) => p.status === 'online').length,
-        busy: mockDeliveryPartners.filter((p) => p.status === 'busy').length,
-        offline: mockDeliveryPartners.filter((p) => p.status === 'offline').length,
-        verified: mockDeliveryPartners.filter((p) => p.documentsVerified).length,
+        total: partners.length,
+        online: partners.filter((p) => p.status === 'online').length,
+        busy: partners.filter((p) => p.status === 'busy').length,
+        offline: partners.filter((p) => p.status === 'offline').length,
+        verified: partners.filter((p) => p.documentsVerified).length,
     };
 
     return (
@@ -146,10 +170,10 @@ export default function PartnersPage() {
                                     </div>
                                     <span
                                         className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-card ${partner.status === 'online'
-                                                ? 'bg-success'
-                                                : partner.status === 'busy'
-                                                    ? 'bg-warning'
-                                                    : 'bg-muted'
+                                            ? 'bg-success'
+                                            : partner.status === 'busy'
+                                                ? 'bg-warning'
+                                                : 'bg-muted'
                                             }`}
                                     />
                                 </div>

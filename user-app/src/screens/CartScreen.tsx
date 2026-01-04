@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -14,11 +14,42 @@ import { useRouter } from 'expo-router';
 import { colors, borderRadius, shadows, spacing } from '../theme';
 import { QuantitySelector } from '../components';
 import { useCart } from '../context/CartContext';
-import productsData from '../data/products.json';
+import { productAPI } from '../services/api';
+
+interface Addon {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+}
 
 export default function CartScreen() {
     const router = useRouter();
     const { items, totalItems, totalAmount, updateQuantity, removeItem, clearCart } = useCart();
+    const [addons, setAddons] = useState<Addon[]>([]);
+
+    useEffect(() => {
+        const fetchAddons = async () => {
+            try {
+                const response = await productAPI.getAll();
+                const allProducts = response.products || response || [];
+                // Get first 3 products as suggestions
+                const suggestions = allProducts.slice(0, 3).map((p: any) => ({
+                    id: p.id || p._id,
+                    name: p.name,
+                    price: p.price,
+                    image: p.image,
+                }));
+                setAddons(suggestions);
+            } catch (error) {
+                console.log('Could not fetch addon suggestions:', error);
+            }
+        };
+
+        if (items.length > 0) {
+            fetchAddons();
+        }
+    }, [items.length]);
 
     const deliveryFee = 0;
     const taxes = Math.round(totalAmount * 0.05);
@@ -35,8 +66,6 @@ export default function CartScreen() {
         acc[item.shopId].items.push(item);
         return acc;
     }, {} as Record<string, { shopName: string; shopId: string; items: typeof items }>);
-
-    const addons = productsData.addons.slice(0, 3);
 
     if (items.length === 0) {
         return (

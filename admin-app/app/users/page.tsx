@@ -3,11 +3,11 @@
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
 import SearchInput from '@/components/ui/SearchInput';
-import { mockUsers } from '@/lib/mockData';
+import { adminAPI } from '@/lib/api';
 import { User } from '@/lib/types';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Filter, Download, UserPlus, Mail, Phone, MapPin, ArrowUpDown } from 'lucide-react';
+import { Filter, Download, UserPlus, Mail, Phone, MapPin, ArrowUpDown, Loader2, RefreshCw } from 'lucide-react';
 
 type SortField = 'name' | 'totalOrders' | 'totalSpent' | 'joinedAt';
 type SortOrder = 'asc' | 'desc';
@@ -17,8 +17,29 @@ export default function UsersPage() {
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [sortField, setSortField] = useState<SortField>('joinedAt');
     const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+    const [users, setUsers] = useState<User[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const filteredUsers = mockUsers
+    const fetchUsers = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const response = await adminAPI.getUsers({
+                status: statusFilter !== 'all' ? statusFilter : undefined,
+                search: searchQuery || undefined,
+            });
+            if (response.users) setUsers(response.users);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [statusFilter, searchQuery]);
+
+    useEffect(() => {
+        fetchUsers();
+    }, [fetchUsers]);
+
+    const filteredUsers = users
         .filter((user) => {
             const matchesSearch =
                 user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,10 +77,10 @@ export default function UsersPage() {
     };
 
     const stats = {
-        total: mockUsers.length,
-        active: mockUsers.filter((u) => u.status === 'active').length,
-        inactive: mockUsers.filter((u) => u.status === 'inactive').length,
-        blocked: mockUsers.filter((u) => u.status === 'blocked').length,
+        total: users.length,
+        active: users.filter((u) => u.status === 'active').length,
+        inactive: users.filter((u) => u.status === 'inactive').length,
+        blocked: users.filter((u) => u.status === 'blocked').length,
     };
 
     return (

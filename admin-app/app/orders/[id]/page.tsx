@@ -2,8 +2,10 @@
 
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
-import { getOrderById } from '@/lib/mockData';
+import { adminAPI } from '@/lib/api';
+import { Order } from '@/lib/types';
 import { useParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
     ArrowLeft,
@@ -19,6 +21,7 @@ import {
     XCircle,
     ChefHat,
     Bike,
+    Loader2,
 } from 'lucide-react';
 
 const statusTimeline = [
@@ -43,7 +46,35 @@ const getTimelineStatus = (currentStatus: string, checkStatus: string) => {
 export default function OrderDetailPage() {
     const params = useParams();
     const orderId = params.id as string;
-    const order = getOrderById(orderId);
+    const [order, setOrder] = useState<Order | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchOrderData = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const response = await adminAPI.getOrders({ search: orderId });
+            const foundOrder = response.orders?.find((o: Order) => o.id === orderId || o._id === orderId);
+            if (foundOrder) setOrder(foundOrder);
+        } catch (error) {
+            console.error('Error fetching order data:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [orderId]);
+
+    useEffect(() => {
+        fetchOrderData();
+    }, [fetchOrderData]);
+
+    if (isLoading) {
+        return (
+            <DashboardLayout title="Loading..." subtitle="">
+                <div className="flex items-center justify-center py-20">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                </div>
+            </DashboardLayout>
+        );
+    }
 
     if (!order) {
         return (
@@ -111,10 +142,10 @@ export default function OrderDetailPage() {
                                             <div className="flex flex-col items-center">
                                                 <div
                                                     className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${status === 'completed'
-                                                            ? 'bg-success text-white'
-                                                            : status === 'current'
-                                                                ? 'bg-primary text-white animate-pulse'
-                                                                : 'bg-border-light text-muted'
+                                                        ? 'bg-success text-white'
+                                                        : status === 'current'
+                                                            ? 'bg-primary text-white animate-pulse'
+                                                            : 'bg-border-light text-muted'
                                                         }`}
                                                 >
                                                     <Icon size={20} />

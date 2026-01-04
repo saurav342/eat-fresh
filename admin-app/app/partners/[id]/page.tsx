@@ -2,8 +2,10 @@
 
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
-import { getPartnerById, getOrdersByPartnerId } from '@/lib/mockData';
+import { adminAPI } from '@/lib/api';
+import { DeliveryPartner, Order } from '@/lib/types';
 import { useParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
     ArrowLeft,
@@ -21,13 +23,49 @@ import {
     TrendingUp,
     Clock,
     Package,
+    Loader2,
 } from 'lucide-react';
 
 export default function PartnerDetailPage() {
     const params = useParams();
     const partnerId = params.id as string;
-    const partner = getPartnerById(partnerId);
-    const partnerOrders = getOrdersByPartnerId(partnerId);
+    const [partner, setPartner] = useState<DeliveryPartner | null>(null);
+    const [partnerOrders, setPartnerOrders] = useState<Order[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchPartnerData = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const [partnersRes, ordersRes] = await Promise.all([
+                adminAPI.getPartners({ search: partnerId }),
+                adminAPI.getOrders({}),
+            ]);
+            const foundPartner = partnersRes.partners?.find((p: DeliveryPartner) => p.id === partnerId || p._id === partnerId);
+            if (foundPartner) setPartner(foundPartner);
+            if (ordersRes.orders) {
+                const filteredOrders = ordersRes.orders.filter((o: Order) => o.deliveryPartnerId === partnerId);
+                setPartnerOrders(filteredOrders);
+            }
+        } catch (error) {
+            console.error('Error fetching partner data:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [partnerId]);
+
+    useEffect(() => {
+        fetchPartnerData();
+    }, [fetchPartnerData]);
+
+    if (isLoading) {
+        return (
+            <DashboardLayout title="Loading..." subtitle="">
+                <div className="flex items-center justify-center py-20">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                </div>
+            </DashboardLayout>
+        );
+    }
 
     if (!partner) {
         return (
@@ -75,10 +113,10 @@ export default function PartnerDetailPage() {
                                 </div>
                                 <span
                                     className={`absolute bottom-1 right-1 w-5 h-5 rounded-full border-3 border-card ${partner.status === 'online'
-                                            ? 'bg-success'
-                                            : partner.status === 'busy'
-                                                ? 'bg-warning'
-                                                : 'bg-muted'
+                                        ? 'bg-success'
+                                        : partner.status === 'busy'
+                                            ? 'bg-warning'
+                                            : 'bg-muted'
                                         }`}
                                 />
                             </div>
@@ -160,38 +198,40 @@ export default function PartnerDetailPage() {
                     </div>
 
                     {/* Bank Details */}
-                    <div className="card p-6">
-                        <h3 className="font-bold text-card-foreground mb-4 flex items-center gap-2">
-                            <CreditCard size={18} className="text-info" />
-                            Bank Details
-                        </h3>
-                        <div className="space-y-3 text-sm">
-                            <div className="flex justify-between">
-                                <span className="text-muted">Bank</span>
-                                <span className="font-medium text-card-foreground">
-                                    {partner.bankDetails.bankName}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted">Account</span>
-                                <span className="font-medium text-card-foreground">
-                                    {partner.bankDetails.accountNumber}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted">IFSC</span>
-                                <span className="font-medium text-card-foreground">
-                                    {partner.bankDetails.ifscCode}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted">Holder</span>
-                                <span className="font-medium text-card-foreground">
-                                    {partner.bankDetails.accountHolderName}
-                                </span>
+                    {partner.bankDetails && (
+                        <div className="card p-6">
+                            <h3 className="font-bold text-card-foreground mb-4 flex items-center gap-2">
+                                <CreditCard size={18} className="text-info" />
+                                Bank Details
+                            </h3>
+                            <div className="space-y-3 text-sm">
+                                <div className="flex justify-between">
+                                    <span className="text-muted">Bank</span>
+                                    <span className="font-medium text-card-foreground">
+                                        {partner.bankDetails.bankName}
+                                    </span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-muted">Account</span>
+                                    <span className="font-medium text-card-foreground">
+                                        {partner.bankDetails.accountNumber}
+                                    </span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-muted">IFSC</span>
+                                    <span className="font-medium text-card-foreground">
+                                        {partner.bankDetails.ifscCode}
+                                    </span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-muted">Holder</span>
+                                    <span className="font-medium text-card-foreground">
+                                        {partner.bankDetails.accountHolderName}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
 
                 {/* Stats and Details */}
@@ -203,8 +243,8 @@ export default function PartnerDetailPage() {
                                 <Clock size={18} />
                                 <span className="text-sm font-medium opacity-90">Today</span>
                             </div>
-                            <p className="text-3xl font-bold">₹{partner.todayEarnings}</p>
-                            <p className="text-sm opacity-75 mt-1">{partner.todayDeliveries} deliveries</p>
+                            <p className="text-3xl font-bold">₹{partner.todayEarnings || 0}</p>
+                            <p className="text-sm opacity-75 mt-1">{partner.todayDeliveries || 0} deliveries</p>
                         </div>
                         <div className="card p-5">
                             <div className="flex items-center gap-2 mb-3 text-muted">
@@ -212,7 +252,7 @@ export default function PartnerDetailPage() {
                                 <span className="text-sm font-medium">This Week</span>
                             </div>
                             <p className="text-3xl font-bold text-card-foreground">
-                                ₹{partner.weeklyEarnings.toLocaleString('en-IN')}
+                                ₹{(partner.weeklyEarnings || 0).toLocaleString('en-IN')}
                             </p>
                         </div>
                         <div className="card p-5">
@@ -221,7 +261,7 @@ export default function PartnerDetailPage() {
                                 <span className="text-sm font-medium">This Month</span>
                             </div>
                             <p className="text-3xl font-bold text-card-foreground">
-                                ₹{partner.monthlyEarnings.toLocaleString('en-IN')}
+                                ₹{(partner.monthlyEarnings || 0).toLocaleString('en-IN')}
                             </p>
                         </div>
                         <div className="card p-5">
@@ -230,7 +270,7 @@ export default function PartnerDetailPage() {
                                 <span className="text-sm font-medium">All Time</span>
                             </div>
                             <p className="text-3xl font-bold text-success">
-                                ₹{(partner.totalEarnings / 1000).toFixed(1)}K
+                                ₹{((partner.totalEarnings || 0) / 1000).toFixed(1)}K
                             </p>
                         </div>
                     </div>
@@ -254,7 +294,7 @@ export default function PartnerDetailPage() {
                             <div className="text-center p-4 rounded-xl bg-border-light">
                                 <IndianRupee size={24} className="mx-auto text-success mb-2" />
                                 <p className="text-3xl font-bold text-card-foreground">
-                                    ₹{(partner.totalEarnings / partner.totalDeliveries).toFixed(0)}
+                                    ₹{partner.totalDeliveries > 0 ? ((partner.totalEarnings || 0) / partner.totalDeliveries).toFixed(0) : 0}
                                 </p>
                                 <p className="text-sm text-muted">Avg Per Delivery</p>
                             </div>
@@ -262,55 +302,57 @@ export default function PartnerDetailPage() {
                     </div>
 
                     {/* Documents */}
-                    <div className="card overflow-hidden">
-                        <div className="p-4 border-b border-border">
-                            <h3 className="font-bold text-card-foreground flex items-center gap-2">
-                                <FileText size={18} className="text-info" />
-                                Document Verification
-                            </h3>
-                        </div>
-                        <div className="p-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                {partner.documents.map((doc) => (
-                                    <div
-                                        key={doc.id}
-                                        className={`flex items-center gap-3 p-4 rounded-xl ${doc.verified ? 'bg-success-light' : 'bg-warning-light'
-                                            }`}
-                                    >
+                    {partner.documents && partner.documents.length > 0 && (
+                        <div className="card overflow-hidden">
+                            <div className="p-4 border-b border-border">
+                                <h3 className="font-bold text-card-foreground flex items-center gap-2">
+                                    <FileText size={18} className="text-info" />
+                                    Document Verification
+                                </h3>
+                            </div>
+                            <div className="p-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                    {partner.documents.map((doc) => (
                                         <div
-                                            className={`w-10 h-10 rounded-lg flex items-center justify-center ${doc.verified ? 'bg-success' : 'bg-warning'
+                                            key={doc.id}
+                                            className={`flex items-center gap-3 p-4 rounded-xl ${doc.verified ? 'bg-success-light' : 'bg-warning-light'
                                                 }`}
                                         >
-                                            {doc.verified ? (
-                                                <CheckCircle size={20} className="text-white" />
-                                            ) : (
-                                                <XCircle size={20} className="text-white" />
-                                            )}
-                                        </div>
-                                        <div className="flex-1">
-                                            <p className="font-semibold text-card-foreground">{doc.name}</p>
-                                            <p className="text-xs text-muted">
-                                                Uploaded{' '}
-                                                {new Date(doc.uploadedAt).toLocaleDateString('en-IN', {
-                                                    day: 'numeric',
-                                                    month: 'short',
-                                                    year: 'numeric',
-                                                })}
-                                            </p>
-                                        </div>
-                                        <span
-                                            className={`text-xs font-semibold px-2 py-1 rounded-full ${doc.verified
+                                            <div
+                                                className={`w-10 h-10 rounded-lg flex items-center justify-center ${doc.verified ? 'bg-success' : 'bg-warning'
+                                                    }`}
+                                            >
+                                                {doc.verified ? (
+                                                    <CheckCircle size={20} className="text-white" />
+                                                ) : (
+                                                    <XCircle size={20} className="text-white" />
+                                                )}
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="font-semibold text-card-foreground">{doc.name}</p>
+                                                <p className="text-xs text-muted">
+                                                    Uploaded{' '}
+                                                    {new Date(doc.uploadedAt).toLocaleDateString('en-IN', {
+                                                        day: 'numeric',
+                                                        month: 'short',
+                                                        year: 'numeric',
+                                                    })}
+                                                </p>
+                                            </div>
+                                            <span
+                                                className={`text-xs font-semibold px-2 py-1 rounded-full ${doc.verified
                                                     ? 'bg-white text-success'
                                                     : 'bg-white text-warning'
-                                                }`}
-                                        >
-                                            {doc.verified ? 'Verified' : 'Pending'}
-                                        </span>
-                                    </div>
-                                ))}
+                                                    }`}
+                                            >
+                                                {doc.verified ? 'Verified' : 'Pending'}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* Recent Deliveries */}
                     <div className="card overflow-hidden">

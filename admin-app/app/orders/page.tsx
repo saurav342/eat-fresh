@@ -3,7 +3,7 @@
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
 import SearchInput from '@/components/ui/SearchInput';
-import { mockOrders } from '@/lib/mockData';
+
 import { adminAPI } from '@/lib/api';
 import { Order, OrderStatus } from '@/lib/types';
 import { useState, useEffect, useCallback, useRef } from 'react';
@@ -23,7 +23,7 @@ const statusTabs: { label: string; value: OrderStatus | 'all' }[] = [
 export default function OrdersPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState<OrderStatus | 'all'>('all');
-    const [orders, setOrders] = useState<Order[]>(mockOrders);
+    const [orders, setOrders] = useState<Order[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -50,7 +50,6 @@ export default function OrdersPage() {
             if (response.orders) setOrders(response.orders);
         } catch (error) {
             console.error('Error fetching orders:', error);
-            // Keep mock data
         } finally {
             setIsLoading(false);
         }
@@ -70,12 +69,12 @@ export default function OrdersPage() {
     });
 
     const getStatusCount = (status: OrderStatus | 'all') => {
-        if (status === 'all') return mockOrders.length;
-        return mockOrders.filter((o) => o.status === status).length;
+        if (status === 'all') return orders.length;
+        return orders.filter((o) => o.status === status).length;
     };
 
     return (
-        <DashboardLayout title="Orders" subtitle={`${mockOrders.length} total orders`}>
+        <DashboardLayout title="Orders" subtitle={`${orders.length} total orders`}>
             {/* Premium Status Tabs with Sliding Indicator */}
             <div className="relative mb-8">
                 <div

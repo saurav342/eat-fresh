@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -9,41 +9,116 @@ import {
     StatusBar,
     SafeAreaView,
     Dimensions,
+    ActivityIndicator,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, borderRadius, shadows, spacing } from '../theme';
 import { QuantitySelector } from '../components';
 import { useCart } from '../context/CartContext';
-import productsData from '../data/products.json';
-import shopsData from '../data/shops.json';
+import { productAPI, shopAPI } from '../services/api';
 import { Product } from '../types';
 
 const { height } = Dimensions.get('window');
 
+interface Shop {
+    id: string;
+    name: string;
+    rating?: number;
+}
+
+interface Addon {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+}
+
 export default function ProductDetailsScreen() {
     const router = useRouter();
     const { id } = useLocalSearchParams<{ id: string }>();
-    const { addItem, getItemQuantity, updateQuantity } = useCart();
+    const { addItem, getItemQuantity } = useCart();
     const [localQty, setLocalQty] = useState(1);
+    const [product, setProduct] = useState<Product | null>(null);
+    const [shop, setShop] = useState<Shop | null>(null);
+    const [addons, setAddons] = useState<Addon[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const product = useMemo(
-        () => productsData.products.find((p) => p.id === id) as Product | undefined,
-        [id]
-    );
+    useEffect(() => {
+        const fetchProductDetails = async () => {
+            if (!id) return;
 
-    const shop = useMemo(
-        () => product && shopsData.shops.find((s) => s.id === product.shopId),
-        [product]
-    );
+            try {
+                setLoading(true);
+                setError(null);
 
-    const addons = productsData.addons;
-    const cartQty = product ? getItemQuantity(product.id) : 0;
+                // Fetch product details
+                const productResponse = await productAPI.getById(id);
+                const productData = productResponse.product || productResponse;
+                setProduct(productData);
 
-    if (!product) {
+                // Fetch shop details if product has shopId
+                if (productData?.shopId) {
+                    try {
+                        const shopResponse = await shopAPI.getById(productData.shopId);
+                        setShop(shopResponse.shop || shopResponse);
+                    } catch (shopErr) {
+                        console.log('Could not fetch shop details:', shopErr);
+                    }
+                }
+
+                // Fetch related products as addons
+                try {
+                    const productsResponse = await productAPI.getAll({ category: productData?.category });
+                    const allProducts = productsResponse.products || productsResponse || [];
+                    // Filter out current product and limit to 3
+                    const relatedProducts = allProducts
+                        .filter((p: Product) => p.id !== id && p._id !== id)
+                        .slice(0, 3)
+                        .map((p: Product) => ({
+                            id: p.id || p._id,
+                            name: p.name,
+                            price: p.price,
+                            image: p.image,
+                        }));
+                    setAddons(relatedProducts);
+                } catch (addonsErr) {
+                    console.log('Could not fetch addons:', addonsErr);
+                }
+            } catch (err) {
+                console.error('Error fetching product:', err);
+                setError('Failed to load product details');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProductDetails();
+    }, [id]);
+
+    const cartQty = product ? getItemQuantity(product.id || (product as any)._id) : 0;
+
+    if (loading) {
         return (
-            <SafeAreaView style={styles.container}>
-                <Text>Product not found</Text>
+            <SafeAreaView style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+                <ActivityIndicator size="large" color={colors.primary} />
+                <Text style={{ marginTop: spacing[4], color: colors.textSecondary }}>Loading product...</Text>
+            </SafeAreaView>
+        );
+    }
+
+    if (error || !product) {
+        return (
+            <SafeAreaView style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+                <MaterialIcons name="error-outline" size={48} color={colors.textSecondary} />
+                <Text style={{ marginTop: spacing[4], color: colors.textSecondary }}>{error || 'Product not found'}</Text>
+                <TouchableOpacity
+                    style={{ marginTop: spacing[4], padding: spacing[3], backgroundColor: colors.primary, borderRadius: borderRadius.lg }}
+                    onPress={() => router.back()}
+                >
+                    <Text style={{ color: colors.white, fontWeight: '600' }}>Go Back</Text>
+                </TouchableOpacity>
             </SafeAreaView>
         );
     }

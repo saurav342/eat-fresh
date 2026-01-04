@@ -6,14 +6,24 @@ import StatsCard from '@/components/ui/StatsCard';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { Users, Truck, ShoppingBag, IndianRupee, ArrowRight, Clock, Loader2 } from 'lucide-react';
 import { adminAPI } from '@/lib/api';
-import { mockDashboardStats, mockOrders, mockDeliveryPartners } from '@/lib/mockData';
 import { DashboardStats, Order, DeliveryPartner } from '@/lib/types';
 import Link from 'next/link';
 
+const defaultStats: DashboardStats = {
+  totalUsers: 0,
+  totalPartners: 0,
+  totalOrders: 0,
+  totalRevenue: 0,
+  usersGrowth: 0,
+  partnersGrowth: 0,
+  ordersGrowth: 0,
+  revenueGrowth: 0,
+};
+
 export default function Dashboard() {
-  const [stats, setStats] = useState<DashboardStats>(mockDashboardStats);
-  const [orders, setOrders] = useState<Order[]>(mockOrders);
-  const [partners, setPartners] = useState<DeliveryPartner[]>(mockDeliveryPartners);
+  const [stats, setStats] = useState<DashboardStats>(defaultStats);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [partners, setPartners] = useState<DeliveryPartner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
@@ -28,7 +38,6 @@ export default function Dashboard() {
       if (partnersRes.partners) setPartners(partnersRes.partners);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
-      // Keep mock data as fallback
     } finally {
       setIsLoading(false);
     }

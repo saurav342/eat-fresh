@@ -2,8 +2,10 @@
 
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import StatusBadge from '@/components/ui/StatusBadge';
-import { getUserById, getOrdersByUserId } from '@/lib/mockData';
+import { adminAPI } from '@/lib/api';
+import { User, Order } from '@/lib/types';
 import { useParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
     ArrowLeft,
@@ -17,13 +19,50 @@ import {
     Ban,
     MoreVertical,
     Star,
+    Loader2,
 } from 'lucide-react';
 
 export default function UserDetailPage() {
     const params = useParams();
     const userId = params.id as string;
-    const user = getUserById(userId);
-    const userOrders = getOrdersByUserId(userId);
+    const [user, setUser] = useState<User | null>(null);
+    const [userOrders, setUserOrders] = useState<Order[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchUserData = useCallback(async () => {
+        try {
+            setIsLoading(true);
+            const [usersRes, ordersRes] = await Promise.all([
+                adminAPI.getUsers({ search: userId }),
+                adminAPI.getOrders({ search: userId }),
+            ]);
+            // Find the specific user by ID
+            const foundUser = usersRes.users?.find((u: User) => u.id === userId || u._id === userId);
+            if (foundUser) setUser(foundUser);
+            if (ordersRes.orders) {
+                const filteredOrders = ordersRes.orders.filter((o: Order) => o.userId === userId);
+                setUserOrders(filteredOrders);
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [userId]);
+
+    useEffect(() => {
+        fetchUserData();
+    }, [fetchUserData]);
+
+    if (isLoading) {
+        return (
+            <DashboardLayout title="Loading..." subtitle="">
+                <div className="flex items-center justify-center py-20">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                </div>
+            </DashboardLayout>
+        );
+    }
 
     if (!user) {
         return (
@@ -182,7 +221,7 @@ export default function UserDetailPage() {
                             <h3 className="font-bold text-card-foreground">Saved Addresses</h3>
                         </div>
                         <div className="p-4 space-y-3">
-                            {user.addresses.length > 0 ? (
+                            {user.addresses && user.addresses.length > 0 ? (
                                 user.addresses.map((address) => (
                                     <div
                                         key={address.id}
@@ -219,7 +258,7 @@ export default function UserDetailPage() {
                         <div className="p-4 border-b border-border flex items-center justify-between">
                             <h3 className="font-bold text-card-foreground">Order History</h3>
                             <Link
-                                href={`/orders?userId=${user.id}`}
+                                href={`/orders?userId=${user.id || user._id}`}
                                 className="text-primary text-sm font-medium hover:underline"
                             >
                                 View All Orders

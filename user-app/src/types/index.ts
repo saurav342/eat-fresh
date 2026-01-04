@@ -17,6 +17,7 @@ export interface Shop {
 
 export interface Product {
     id: string;
+    _id?: string; // MongoDB ObjectId from API
     shopId: string;
     name: string;
     description?: string;
