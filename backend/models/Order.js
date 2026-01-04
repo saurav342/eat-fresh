@@ -55,6 +55,6 @@ const orderSchema = new mongoose.Schema(
 orderSchema.index({ userId: 1, createdAt: -1 });
 orderSchema.index({ deliveryPartnerId: 1, status: 1 });
 orderSchema.index({ status: 1 });
-orderSchema.index({ orderId: 1 });
+// Note: orderId already has an index from unique: true in the schema definition
 
 module.exports = mongoose.model('Order', orderSchema);
